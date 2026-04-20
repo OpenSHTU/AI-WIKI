@@ -15,130 +15,130 @@
   - 数据形式：$\mathcal{D}=\{(x_i,y_i)\}_{i=1}^{n}$
   - 学习目标：$f_\theta(x)\rightarrow y$ 或 $p_\theta(y|x)$
   - 回归模型
-    - Linear Regression
-    - Ridge Regression
-    - Lasso Regression
-    - Elastic Net
-    - Support Vector Regression (SVR)
-    - Random Forest Regression
-    - Gradient Boosting Regression
-    - Gaussian Process Regression
-    - Neural Network Regression
+    - [Linear Regression](/ml-dl/supervised-learning/regression-models/linear-regression)
+    - [Ridge Regression](/ml-dl/supervised-learning/regression-models/ridge-regression)
+    - [Lasso Regression](/ml-dl/supervised-learning/regression-models/lasso-regression)
+    - [Elastic Net](/ml-dl/supervised-learning/regression-models/elastic-net)
+    - [Support Vector Regression (SVR)](/ml-dl/supervised-learning/regression-models/support-vector-regression)
+    - [Random Forest Regression](/ml-dl/supervised-learning/regression-models/random-forest-regression)
+    - [Gradient Boosting Regression](/ml-dl/supervised-learning/regression-models/gradient-boosting-regression)
+    - [Gaussian Process Regression](/ml-dl/supervised-learning/regression-models/gaussian-process-regression)
+    - [Neural Network Regression](/ml-dl/supervised-learning/regression-models/neural-network-regression)
   - 分类模型
-    - Logistic Regression
-    - Softmax Regression
-    - Naive Bayes
-    - k-Nearest Neighbors (kNN)
-    - Support Vector Machine (SVM)
-    - Decision Tree
-    - Random Forest
-    - AdaBoost
-    - Multilayer Perceptron (MLP)
-    - CNN Classifier
-    - RNN Classifier
-    - Transformer Classifier
+    - [Logistic Regression](/ml-dl/supervised-learning/classification-models/logistic-regression)
+    - [Softmax Regression](/ml-dl/supervised-learning/classification-models/softmax-regression)
+    - [Naive Bayes](/ml-dl/supervised-learning/classification-models/naive-bayes)
+    - [k-Nearest Neighbors (kNN)](/ml-dl/supervised-learning/classification-models/k-nearest-neighbors)
+    - [Support Vector Machine (SVM)](/ml-dl/supervised-learning/classification-models/support-vector-machine)
+    - [Decision Tree](/ml-dl/supervised-learning/classification-models/decision-tree)
+    - [Random Forest](/ml-dl/supervised-learning/classification-models/random-forest)
+    - [AdaBoost](/ml-dl/supervised-learning/classification-models/adaboost)
+    - [Multilayer Perceptron (MLP)](/ml-dl/supervised-learning/classification-models/multilayer-perceptron)
+    - [CNN Classifier](/ml-dl/supervised-learning/classification-models/cnn-classifier)
+    - [RNN Classifier](/ml-dl/supervised-learning/classification-models/rnn-classifier)
+    - [Transformer Classifier](/ml-dl/supervised-learning/classification-models/transformer-classifier)
 
 - Unsupervised Learning
   - 只使用输入数据，目标是发现数据内部结构、分布、簇、低维表示或异常点。
   - 数据形式：$\mathcal{D}=\{x_i\}_{i=1}^{n}$
   - 聚类方法
-    - K-Means
-    - Gaussian Mixture Model (GMM；常用 EM 算法训练)
-    - Spectral Clustering
+    - [K-Means](/ml-dl/unsupervised-learning/clustering-methods/k-means)
+    - [Gaussian Mixture Model (GMM；常用 EM 算法训练)](/ml-dl/unsupervised-learning/clustering-methods/gaussian-mixture-model)
+    - [Spectral Clustering](/ml-dl/unsupervised-learning/clustering-methods/spectral-clustering)
   - 降维方法
-    - Principal Component Analysis (PCA)
+    - [Principal Component Analysis (PCA)](/ml-dl/unsupervised-learning/dimensionality-reduction/principal-component-analysis)
   - 密度估计
-    - Kernel Density Estimation (KDE)
-    - Gaussian Mixture Model (GMM)
-  - 异常检测(待完善)
+    - [Kernel Density Estimation (KDE)](/ml-dl/unsupervised-learning/density-estimation/kernel-density-estimation)
+    - [Gaussian Mixture Model (GMM)](/ml-dl/unsupervised-learning/density-estimation/gaussian-mixture-model)
+  - [异常检测](./unsupervised-learning/anomaly-detection)
 
 - Self-supervised Learning
   - 从数据自身构造监督信号，不依赖人工标注。
   - 自回归预测
-    - n-gram Language Model
-    - RNN Language Model
-    - Transformer Language Model
-    - GPT-style Next-token Prediction
+    - [n-gram Language Model](/ml-dl/self-supervised-learning/autoregressive-prediction/n-gram-language-model)
+    - [RNN Language Model](/ml-dl/self-supervised-learning/autoregressive-prediction/rnn-language-model)
+    - [Transformer Language Model](/ml-dl/self-supervised-learning/autoregressive-prediction/transformer-language-model)
+    - [GPT-style Next-token Prediction](/ml-dl/self-supervised-learning/autoregressive-prediction/gpt-style-next-token-prediction)
   - 掩码预测
-    - Masked Language Modeling (MLM)
-    - BERT-style Pretraining
-    - Masked Autoencoder (MAE)
-    - Masked Image Modeling
+    - [Masked Language Modeling (MLM)](/ml-dl/self-supervised-learning/masked-prediction/masked-language-modeling)
+    - [BERT-style Pretraining](/ml-dl/self-supervised-learning/masked-prediction/bert-style-pretraining)
+    - [Masked Autoencoder (MAE)](/ml-dl/self-supervised-learning/masked-prediction/masked-autoencoder)
+    - [Masked Image Modeling](/ml-dl/self-supervised-learning/masked-prediction/masked-image-modeling)
   - 对比学习(待完善)
-    - Word2Vec
-    - SimCLRbi
-    - MoCo
-    - BYOL
-    - Barlow Twins
-    - SwAV
-    - CLIP-style Image-Text Contrastive Learning
+    - [Word2Vec](/ml-dl/self-supervised-learning/contrastive-learning/word2vec)
+    - [SimCLRbi](/ml-dl/self-supervised-learning/contrastive-learning/simclrbi)
+    - [MoCo](/ml-dl/self-supervised-learning/contrastive-learning/moco)
+    - [BYOL](/ml-dl/self-supervised-learning/contrastive-learning/byol)
+    - [Barlow Twins](/ml-dl/self-supervised-learning/contrastive-learning/barlow-twins)
+    - [SwAV](/ml-dl/self-supervised-learning/contrastive-learning/swav)
+    - [CLIP-style Image-Text Contrastive Learning](/ml-dl/self-supervised-learning/contrastive-learning/clip-style-image-text-contrastive-learning)
   - 去噪学习
-    - Denoising Autoencoder
-    - BART-style Denoising
-    - Diffusion Denoising Objective
+    - [Denoising Autoencoder](/ml-dl/self-supervised-learning/denoising/denoising-autoencoder)
+    - [BART-style Denoising](/ml-dl/self-supervised-learning/denoising/bart-style-denoising)
+    - [Diffusion Denoising Objective](/ml-dl/self-supervised-learning/denoising/diffusion-denoising-objective)
   - 预测式表示学习
-    - Contrastive Predictive Coding (CPC)
-    - Bootstrap Representation Learning
+    - [Contrastive Predictive Coding (CPC)](/ml-dl/self-supervised-learning/predictive-representation-learning/contrastive-predictive-coding)
+    - [Bootstrap Representation Learning](/ml-dl/self-supervised-learning/predictive-representation-learning/bootstrap-representation-learning)
 
 - Semi-supervised Learning
   - 同时使用少量标注数据和大量无标注数据。
   - 数据形式：$\mathcal{D}_L=\{(x_i,y_i)\},\quad \mathcal{D}_U=\{x_j\}$
   - 典型方法
-    - Pseudo-labeling
-    - Consistency Regularization
-    - FixMatch
+    - [Pseudo-labeling](/ml-dl/semi-supervised-learning/pseudo-labeling)
+    - [Consistency Regularization](/ml-dl/semi-supervised-learning/consistency-regularization)
+    - [FixMatch](/ml-dl/semi-supervised-learning/fixmatch)
 
 - Reinforcement Learning
   - 通过 agent 与 environment 的交互学习策略。
   - 策略形式：$\pi(a|s)$
   - 优化目标：$\max_\pi \mathbb{E}\left[\sum_{t=0}^{T}\gamma^t r_t\right]$
   - 关键对象
-    - State
-    - Action
-    - Reward
-    - Policy
-    - Value Function
-    - Environment Model
+    - [State](/ml-dl/reinforcement-learning/key-concepts/state)
+    - [Action](/ml-dl/reinforcement-learning/key-concepts/action)
+    - [Reward](/ml-dl/reinforcement-learning/key-concepts/reward)
+    - [Policy](/ml-dl/reinforcement-learning/key-concepts/policy)
+    - [Value Function](/ml-dl/reinforcement-learning/key-concepts/value-function)
+    - [Environment Model](/ml-dl/reinforcement-learning/key-concepts/environment-model)
   - Bandit
-    - Multi-Armed Bandit
-    - ε-Greedy
-    - Upper Confidence Bound (UCB)
-    - Thompson Sampling
+    - [Multi-Armed Bandit](/ml-dl/reinforcement-learning/bandit/multi-armed-bandit)
+    - [ε-Greedy](/ml-dl/reinforcement-learning/bandit/epsilon-greedy)
+    - [Upper Confidence Bound (UCB)](/ml-dl/reinforcement-learning/bandit/upper-confidence-bound)
+    - [Thompson Sampling](/ml-dl/reinforcement-learning/bandit/thompson-sampling)
   - Dynamic Programming
-    - Policy Evaluation
-    - Policy Iteration
-    - Value Iteration
+    - [Policy Evaluation](/ml-dl/reinforcement-learning/dynamic-programming/policy-evaluation)
+    - [Policy Iteration](/ml-dl/reinforcement-learning/dynamic-programming/policy-iteration)
+    - [Value Iteration](/ml-dl/reinforcement-learning/dynamic-programming/value-iteration)
   - Monte Carlo RL
-    - Monte Carlo Prediction
-    - Monte Carlo Control
+    - [Monte Carlo Prediction](/ml-dl/reinforcement-learning/monte-carlo-rl/monte-carlo-prediction)
+    - [Monte Carlo Control](/ml-dl/reinforcement-learning/monte-carlo-rl/monte-carlo-control)
   - Temporal Difference Learning
-    - TD(0)
-    - Q-Learning
-    - SARSA
+    - [TD(0)](/ml-dl/reinforcement-learning/temporal-difference-learning/td)
+    - [Q-Learning](/ml-dl/reinforcement-learning/temporal-difference-learning/q-learning)
+    - [SARSA](/ml-dl/reinforcement-learning/temporal-difference-learning/sarsa)
   - Deep Reinforcement Learning
-    - Deep Q-Network (DQN)
-    - Proximal Policy Optimization (PPO)
-    - Soft Actor-Critic (SAC)
-    - MuZero
+    - [Deep Q-Network (DQN)](/ml-dl/reinforcement-learning/deep-reinforcement-learning/deep-q-network)
+    - [Proximal Policy Optimization (PPO)](/ml-dl/reinforcement-learning/deep-reinforcement-learning/proximal-policy-optimization)
+    - [Soft Actor-Critic (SAC)](/ml-dl/reinforcement-learning/deep-reinforcement-learning/soft-actor-critic)
+    - [MuZero](/ml-dl/reinforcement-learning/deep-reinforcement-learning/muzero)
 
 - Imitation Learning(待完善)
   - 从专家行为中学习策略。
   - 典型方法
-    - Behavior Cloning
-    - DAgger
-    - Inverse Reinforcement Learning (IRL)
-    - Maximum Entropy IRL
-    - Generative Adversarial Imitation Learning (GAIL)
+    - [Behavior Cloning](/ml-dl/imitation-learning/behavior-cloning)
+    - [DAgger](/ml-dl/imitation-learning/dagger)
+    - [Inverse Reinforcement Learning (IRL)](/ml-dl/imitation-learning/inverse-reinforcement-learning)
+    - [Maximum Entropy IRL](/ml-dl/imitation-learning/maximum-entropy-irl)
+    - [Generative Adversarial Imitation Learning (GAIL)](/ml-dl/imitation-learning/generative-adversarial-imitation-learning)
 
 - Active Learning(待完善)
   - 主动选择最有价值的数据进行标注。
   - 典型方法
-    - Uncertainty Sampling
-    - Query-by-Committee
-    - Expected Model Change
-    - Expected Error Reduction
-    - Core-set Selection
-    - Diversity-based Sampling
+    - [Uncertainty Sampling](/ml-dl/active-learning/uncertainty-sampling)
+    - [Query-by-Committee](/ml-dl/active-learning/query-by-committee)
+    - [Expected Model Change](/ml-dl/active-learning/expected-model-change)
+    - [Expected Error Reduction](/ml-dl/active-learning/expected-error-reduction)
+    - [Core-set Selection](/ml-dl/active-learning/core-set-selection)
+    - [Diversity-based Sampling](/ml-dl/active-learning/diversity-based-sampling)
 
 ### 按模型结构分类：Model Structure
 
