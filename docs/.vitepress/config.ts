@@ -1,54 +1,154 @@
-import { defineConfig } from 'vitepress'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const docsRoot = __dirname ? path.resolve(__dirname, '..') : path.resolve('docs')
+import { defineConfig } from 'vitepress'
 
-function titleFromMarkdown(filePath: string, fallback: string) {
-  if (!fs.existsSync(filePath)) return fallback
-
-  const firstHeading = fs
-    .readFileSync(filePath, 'utf-8')
-    .split(/\r?\n/)
-    .find((line) => line.startsWith('# '))
-
-  return firstHeading ? firstHeading.replace(/^#\s+/, '').trim() : fallback
+type SidebarItem = {
+  text: string
+  link?: string
+  items?: SidebarItem[]
+  collapsed?: boolean
 }
 
-function titleFromSegment(segment: string) {
-  return segment
-    .split('-')
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(' ')
+const docsDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const mlDlDir = path.join(docsDir, 'ml-dl')
+
+function humanizeName(name: string): string {
+  return name
+    .replace(/\.md$/, '')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (character) => character.toUpperCase())
 }
 
-function buildDirectorySidebar(relativeDir: string, linkPrefix: string) {
-  const absoluteDir = path.join(docsRoot, relativeDir)
-  const items = []
+function readTitle(filePath: string, fallback: string): string {
+  if (!fs.existsSync(filePath)) {
+    return fallback
+  }
 
-  if (!fs.existsSync(absoluteDir)) return items
+  const content = fs.readFileSync(filePath, 'utf8')
+  const match = content.match(/^#\s+(.+)$/m)
 
-  const entries = fs.readdirSync(absoluteDir, { withFileTypes: true })
-  const directories = entries
-    .filter((entry) => entry.isDirectory())
-    .sort((a, b) => a.name.localeCompare(b.name))
+  return match?.[1].trim() || fallback
+}
 
-  for (const directory of directories) {
-    const childRelative = path.posix.join(relativeDir.replaceAll(path.sep, '/'), directory.name)
-    const childAbsolute = path.join(absoluteDir, directory.name)
-    const indexPath = path.join(childAbsolute, 'index.md')
-    const nestedItems = buildDirectorySidebar(childRelative, `${linkPrefix}${directory.name}/`)
+function toRoute(filePath: string): string {
+  const relativePath = path.relative(docsDir, filePath).replace(/\\/g, '/').replace(/\.md$/, '')
+
+  if (relativePath.endsWith('/index')) {
+    return `/${relativePath.slice(0, -'/index'.length)}/`
+  }
+
+  return `/${relativePath}`
+}
+
+function listEntries(directoryPath: string): fs.Dirent[] {
+  return fs
+    .readdirSync(directoryPath, { withFileTypes: true })
+    .filter((entry) => !entry.name.startsWith('.'))
+    .sort((left, right) => {
+      if (left.name === 'index.md') {
+        return -1
+      }
+
+      if (right.name === 'index.md') {
+        return 1
+      }
+
+      if (left.isDirectory() && !right.isDirectory()) {
+        return -1
+      }
+
+      if (!left.isDirectory() && right.isDirectory()) {
+        return 1
+      }
+
+      return left.name.localeCompare(right.name, 'en')
+    })
+}
+
+function buildMethodItems(directoryPath: string, routePrefix: string): SidebarItem[] {
+  const items: SidebarItem[] = []
+
+  for (const entry of listEntries(directoryPath)) {
+    if (!entry.isFile() || !entry.name.endsWith('.md') || entry.name === 'index.md') {
+      continue
+    }
+
+    const filePath = path.join(directoryPath, entry.name)
 
     items.push({
-      text: titleFromMarkdown(indexPath, titleFromSegment(directory.name)),
-      link: `${linkPrefix}${directory.name}/`,
-      collapsed: true,
-      ...(nestedItems.length ? { items: nestedItems } : {})
+      text: readTitle(filePath, humanizeName(entry.name)),
+      link: `${routePrefix}${entry.name.replace(/\.md$/, '')}`
     })
   }
 
   return items
+}
+
+function buildSidebarItems(directoryPath: string, routePrefix: string): SidebarItem[] {
+  const items: SidebarItem[] = []
+
+  for (const entry of listEntries(directoryPath)) {
+    if (entry.name === 'index.md') {
+      continue
+    }
+
+    const entryPath = path.join(directoryPath, entry.name)
+
+    if (entry.isDirectory()) {
+      if (entry.name === 'methods') {
+        items.push(...buildMethodItems(entryPath, routePrefix))
+        continue
+      }
+
+      const childGroup = buildSectionGroup(entryPath, `${routePrefix}${entry.name}/`)
+
+      if (childGroup) {
+        items.push(childGroup)
+      }
+
+      continue
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.md')) {
+      items.push({
+        text: readTitle(entryPath, humanizeName(entry.name)),
+        link: toRoute(entryPath)
+      })
+    }
+  }
+
+  return items
+}
+
+function buildSectionGroup(directoryPath: string, routePrefix: string): SidebarItem | null {
+  const overviewPath = path.join(directoryPath, 'index.md')
+  const items: SidebarItem[] = []
+
+  if (fs.existsSync(overviewPath)) {
+    items.push({
+      text: '总览',
+      link: routePrefix
+    })
+  }
+
+  items.push(...buildSidebarItems(directoryPath, routePrefix))
+
+  if (items.length === 0) {
+    return null
+  }
+
+  return {
+    text: readTitle(overviewPath, humanizeName(path.basename(directoryPath))),
+    collapsed: false,
+    items
+  }
+}
+
+function buildMlDlSidebar(): SidebarItem[] {
+  const group = buildSectionGroup(mlDlDir, '/ml-dl/')
+  return group ? [group] : []
 }
 
 const zhNav = [
@@ -72,19 +172,7 @@ const zhSidebar = {
       ]
     }
   ],
-  '/ml-dl/': [
-    {
-      text: 'ML & DL',
-      items: [
-        { text: '总览', link: '/ml-dl/' },
-        {
-          text: 'ML 算法分类',
-          collapsed: false,
-          items: buildDirectorySidebar('ml-dl', '/ml-dl/')
-        }
-      ]
-    }
-  ],
+  '/ml-dl/': buildMlDlSidebar(),
   '/math/': [
     {
       text: '数学基础',
