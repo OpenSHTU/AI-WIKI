@@ -17,3 +17,17 @@
 ## 现代机器学习与深度学习
 
 这一部分留在ML部分展开，详见。
+
+## 自然语言处理 NLP
+
+自然语言处理板块用于组织语言建模、文本表示、序列建模、句法分析与语义理解等核心主题。
+
+- [NLP 总览](/nlp/)
+- [Transformer 架构详解](/nlp/language-modeling/transformer)
+- [NLP Resources](/nlp/resources)
+
+## 资源推荐
+
+- [AI Resources](./resources)
+- [NLP Resources](/nlp/resources)
+

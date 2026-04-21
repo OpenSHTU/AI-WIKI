@@ -13,6 +13,9 @@ type SidebarItem = {
 
 const docsDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const mlDlDir = path.join(docsDir, 'ml-dl')
+const enMathDir = path.join(docsDir, 'en', 'math')
+const enMlDlDir = path.join(docsDir, 'en', 'ml-dl')
+const enNlpDir = path.join(docsDir, 'en', 'nlp')
 
 function humanizeName(name: string): string {
   return name
@@ -122,13 +125,13 @@ function buildSidebarItems(directoryPath: string, routePrefix: string): SidebarI
   return items
 }
 
-function buildSectionGroup(directoryPath: string, routePrefix: string): SidebarItem | null {
+function buildSectionGroup(directoryPath: string, routePrefix: string, overviewText = '总览'): SidebarItem | null {
   const overviewPath = path.join(directoryPath, 'index.md')
   const items: SidebarItem[] = []
 
   if (fs.existsSync(overviewPath)) {
     items.push({
-      text: '总览',
+      text: overviewText,
       link: routePrefix
     })
   }
@@ -151,16 +154,26 @@ function buildMlDlSidebar(): SidebarItem[] {
   return group ? [group] : []
 }
 
+function buildEnSectionSidebar(directoryPath: string, routePrefix: string): SidebarItem[] {
+  const group = buildSectionGroup(directoryPath, routePrefix, 'Overview')
+  return group ? [group] : []
+}
+
 const zhNav = [
   { text: '首页', link: '/' },
   { text: '数学基础', link: '/math' },
   { text: '人工智能', link: '/ai/' },
+  { text: 'NLP', link: '/nlp/' },
   { text: 'ML & DL', link: '/ml-dl/' },
 
 ]
 
 const enNav = [
-  { text: 'Home', link: '/en/' }
+  { text: 'Home', link: '/en/' },
+  { text: 'Math', link: '/en/math/' },
+  { text: 'AI', link: '/en/ai/' },
+  { text: 'NLP', link: '/en/nlp/' },
+  { text: 'ML & DL', link: '/en/ml-dl/' }
 ]
 
 const zhSidebar = {
@@ -168,7 +181,25 @@ const zhSidebar = {
     {
       text: '人工智能',
       items: [
-        { text: '总览', link: '/ai/' }
+        { text: '总览', link: '/ai/' },
+        { text: '资源推荐', link: '/ai/resources' }
+      ]
+    }
+  ],
+  '/nlp/': [
+    {
+      text: '自然语言处理 NLP',
+      items: [
+        { text: '总览', link: '/nlp/' },
+        { text: 'Resources', link: '/nlp/resources' },
+        { text: '文本预处理', link: '/nlp/text-preprocessing/' },
+        { text: '文本表示', link: '/nlp/text-representation/' },
+        { text: '语言模型', link: '/nlp/language-modeling/' },
+        { text: 'Transformer 架构详解', link: '/nlp/language-modeling/transformer' },
+        { text: '序列建模', link: '/nlp/sequence-modeling/' },
+        { text: '句法分析', link: '/nlp/syntactic-parsing/' },
+        { text: '语义与篇章', link: '/nlp/semantic-discourse/' },
+        { text: '下游任务', link: '/nlp/downstream-tasks/' }
       ]
     }
   ],
@@ -178,6 +209,7 @@ const zhSidebar = {
       text: '数学基础',
       items: [
         { text: '总览', link: '/math/' },
+        { text: '资源推荐', link: '/math/resources' },
         {
           text: '线性代数：表示和变换',
           collapsed: false,
@@ -231,11 +263,29 @@ const zhSidebar = {
   ]
 }
 
-const enSidebar = {}
+const enSidebar = {
+  '/en/math/': buildEnSectionSidebar(enMathDir, '/en/math/'),
+  '/en/ai/': [
+    {
+      text: 'AI',
+      items: [
+        { text: 'Overview', link: '/en/ai/' },
+        { text: 'Resources', link: '/en/ai/resources' }
+      ]
+    }
+  ],
+  '/en/nlp/': buildEnSectionSidebar(enNlpDir, '/en/nlp/'),
+  '/en/ml-dl/': buildEnSectionSidebar(enMlDlDir, '/en/ml-dl/')
+}
 
 export default defineConfig({
   title: 'AI Wiki',
   description: 'A structured AI knowledge base for NLP, LLMs, multimodal AI, world models, and embodied AI.',
+  vite: {
+    optimizeDeps: {
+      include: ['mermaid']
+    }
+  },
   cleanUrls: true,
   lastUpdated: true,
   markdown: {

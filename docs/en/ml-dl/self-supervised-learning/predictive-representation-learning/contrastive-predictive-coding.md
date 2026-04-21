@@ -1,0 +1,8 @@
+﻿# Contrastive Predictive Coding
+
+This page documents $title, including definition, core idea, applicable scenarios, and related links.
+
+## Related Chinese Page
+
+- [Chinese version](/ml-dl/self-supervised-learning/predictive-representation-learning/contrastive-predictive-coding)
+

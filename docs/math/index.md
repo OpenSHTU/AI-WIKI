@@ -12,6 +12,10 @@
 - 概率论与数理统计
 - 信息论
 
+## 资源推荐
+
+- [Math Resources](./resources)
+
 ## 这一部分的核心是什么
 
 > [!IMPORTANT] Idea

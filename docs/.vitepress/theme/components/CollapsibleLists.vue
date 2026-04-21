@@ -7,7 +7,18 @@ import { useRoute } from 'vitepress'
 const route = useRoute()
 
 function shouldEnhance(path) {
-  return path === '/ai/' || path === '/ai' || path === '/ml-dl/' || path === '/ml-dl' || path.startsWith('/ml-dl/')
+  return (
+    path === '/ai/' ||
+    path === '/ai' ||
+    path === '/en/ai/' ||
+    path === '/en/ai' ||
+    path === '/ml-dl/' ||
+    path === '/ml-dl' ||
+    path.startsWith('/ml-dl/') ||
+    path === '/en/ml-dl/' ||
+    path === '/en/ml-dl' ||
+    path.startsWith('/en/ml-dl/')
+  )
 }
 
 function directNestedList(li) {

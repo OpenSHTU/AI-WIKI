@@ -38,6 +38,14 @@ Explore the knowledge base through several structured paths:
 - **Core Models**: Deep dives into NLP, CV, and the architectures driving modern deep neural networks.
 - **Frontier Topics**: Continuous tracking of Transformers, Multi-Agent systems, World Models, Embodied AI, and Multimodal learning.
 
+### Section Entry Points
+
+- [Math Foundation](/en/math/)
+- [AI Taxonomy](/en/ai/)
+- [NLP](/en/nlp/)
+- [ML & DL](/en/ml-dl/)
+- [Start Here](/en/start-here)
+
 ## ✨ Our Vision
 
 > We hope this platform becomes a lifelong companion for AI learners—turning every fragmented note into an interconnected node, thereby building your very own macro universe of AI understanding.

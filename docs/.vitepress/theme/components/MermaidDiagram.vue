@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
+import mermaid from 'mermaid'
 
 const props = defineProps<{
   graph: string
@@ -26,8 +27,6 @@ async function renderDiagram() {
   await nextTick()
 
   try {
-    const mermaid = (await import('mermaid')).default
-
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: 'strict',
