@@ -211,15 +211,17 @@ const zhSidebar = {
         { text: '总览', link: '/math/' },
         { text: '资源推荐', link: '/math/resources' },
         {
-          text: '线性代数：表示和变换',
+          text: '线性代数',
           collapsed: false,
           items: [
             { text: '导览', link: '/math/linear-algebra/' },
-            { text: '向量、矩阵与张量', link: '/math/linear-algebra/vectors-matrices-tensors' },
-            { text: '向量空间', link: '/math/linear-algebra/vector-spaces' },
+            { text: '矩阵与线性方程组', link: '/math/linear-algebra/vectors-matrices-tensors' },
+            { text: '线性空间', link: '/math/linear-algebra/vector-spaces' },
             { text: '线性变换', link: '/math/linear-algebra/linear-transformations' },
-            { text: '内积、范数与相似度', link: '/math/linear-algebra/inner-product-norm-similarity' },
-            { text: '特征分解、SVD 与低秩结构', link: '/math/linear-algebra/eigen-svd-low-rank' }
+            { text: '矩阵的谱与性质', link: '/math/linear-algebra/eigen-svd-low-rank' },
+            { text: '内积空间', link: '/math/linear-algebra/inner-product-norm-similarity' },
+            { text: '矩阵微积分', link: '/math/linear-algebra/matrix-calculus' },
+            { text: '线性代数公式汇总', link: '/math/linear-algebra/matrix-formulas-reference' }
           ]
         },
         {
