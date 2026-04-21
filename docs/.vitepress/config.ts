@@ -225,7 +225,7 @@ const zhSidebar = {
           ]
         },
         {
-          text: '微积分：变化、梯度和反向传播',
+          text: '微积分',
           collapsed: false,
           items: [
             { text: '导览', link: '/math/calculus/' },
@@ -237,7 +237,7 @@ const zhSidebar = {
           ]
         },
         {
-          text: '概率论与数理统计：不确定性、估计和评估',
+          text: '概率论与数理统计',
           collapsed: false,
           items: [
             { text: '导览', link: '/math/probability-statistics/' },
@@ -249,15 +249,10 @@ const zhSidebar = {
           ]
         },
         {
-          text: '信息论：分布差异和 loss 来源',
+          text: '信息论',
           collapsed: false,
           items: [
-            { text: '导览', link: '/math/information-theory/' },
-            { text: '熵', link: '/math/information-theory/entropy' },
-            { text: '交叉熵与负对数似然', link: '/math/information-theory/cross-entropy-and-nll' },
-            { text: 'KL 散度', link: '/math/information-theory/kl-divergence' },
-            { text: '互信息', link: '/math/information-theory/mutual-information' },
-            { text: 'Perplexity', link: '/math/information-theory/perplexity' }
+            { text: '导论：熵、散度与互信息', link: '/math/information-theory/' }
           ]
         }
       ]

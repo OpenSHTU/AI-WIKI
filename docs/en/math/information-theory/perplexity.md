@@ -4,5 +4,5 @@ This page documents $title, including definition, core idea, applicable scenario
 
 ## Related Chinese Page
 
-- [Chinese version](/math/information-theory/perplexity)
+- [Chinese version](/math/information-theory/)
 
