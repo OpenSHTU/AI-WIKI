@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" class="home-backdrop" @pointermove="onPointerMove" @pointerleave="onPointerLeave">
+  <div ref="root" class="home-backdrop">
     <canvas ref="canvas" class="home-backdrop__canvas" aria-hidden="true" />
     <div class="home-backdrop__beam" :style="beamStyle" aria-hidden="true" />
   </div>
@@ -21,13 +21,18 @@ const beamStyle = computed(() => ({
 let frame = 0
 let particles = []
 let removeResize = null
+let removePointerListeners = null
 
 function onPointerMove(event) {
   const rect = root.value?.getBoundingClientRect()
   if (!rect) return
+
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+
   pointer.value = {
-    x: ((event.clientX - rect.left) / rect.width) * 100,
-    y: ((event.clientY - rect.top) / rect.height) * 100,
+    x: Math.min(Math.max(x, 0), 100),
+    y: Math.min(Math.max(y, 0), 100),
     active: true
   }
 }
@@ -118,10 +123,25 @@ function setupCanvas() {
   removeResize = () => window.removeEventListener('resize', resize)
 }
 
-onMounted(setupCanvas)
+function setupPointerTracking() {
+  window.addEventListener('pointermove', onPointerMove)
+  window.addEventListener('pointerleave', onPointerLeave)
+  window.addEventListener('blur', onPointerLeave)
+  removePointerListeners = () => {
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerleave', onPointerLeave)
+    window.removeEventListener('blur', onPointerLeave)
+  }
+}
+
+onMounted(() => {
+  setupCanvas()
+  setupPointerTracking()
+})
 onUnmounted(() => {
   cancelAnimationFrame(frame)
   removeResize?.()
+  removePointerListeners?.()
 })
 </script>
 
@@ -133,7 +153,7 @@ onUnmounted(() => {
   height: min(86vh, 820px);
   min-height: 560px;
   overflow: hidden;
-  pointer-events: auto;
+  pointer-events: none;
   mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
