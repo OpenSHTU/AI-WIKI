@@ -276,6 +276,7 @@ const enSidebar = {
 }
 
 export default defineConfig({
+  base: process.env.VITEPRESS_BASE ?? '/',
   title: 'AI Wiki',
   description: 'A structured AI knowledge base for NLP, LLMs, multimodal AI, world models, and embodied AI.',
   vite: {
